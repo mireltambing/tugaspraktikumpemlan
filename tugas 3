@@ -1,0 +1,100 @@
+//Nathania Maerella Arungla'bi' Tambing
+//215150707111040
+
+package baju;
+import java.util.Scanner;
+    public class Baju {
+    private String jns;
+    private int hrg;
+    private int jmlh;
+    final int bajua = 100000;
+    final int bajub = 125000;
+    final int bajuc = 175000;
+
+    public void setJenis(String jenis) {
+        this.jns = jenis;
+    }
+
+    public void setJumlah(int jumlah) {
+        this.jmlh = jumlah;
+    }
+
+    void hargaa() {
+        if (jmlh > 100) {
+
+            hrg = jmlh * 95000;
+            System.out.println("harga Per buah :" + 95000);
+            System.out.println("Total harga    :" + hrg);
+        } else {
+            hrg = jmlh * bajua;
+            System.out.println("harga Per buah :" + bajua);
+            System.out.println("Total harga    :" + hrg);
+        }
+    }
+
+    void hargab() {
+        if (jmlh > 100) {
+            hrg = jmlh * 120000;
+            System.out.println("harga Per buah :" + 120000);
+            System.out.println("Total harga    :" + hrg);
+        } else {
+            hrg = jmlh * bajub;
+            System.out.println("harga Per buah :" + bajub);
+            System.out.println("Total harga    :" + hrg);
+        }
+    }
+
+    void hargac() {
+        if (jmlh > 100) {
+            hrg = jmlh * 160000;
+            System.out.println("harga Per buah :" + 160000);
+            System.out.println("Total harga    :" + hrg);
+        } else {
+            hrg = jmlh * bajuc;
+            System.out.println("harga Per buah :" + bajuc);
+            System.out.println("Total harga    :" + hrg);
+        }
+    }
+
+    void display() {
+        if (jns.equalsIgnoreCase("a")) {
+            hargaa();
+        } else if (jns.equalsIgnoreCase("b")) {
+            hargab();
+        } else if (jns.equalsIgnoreCase("c")) {
+            hargac();
+        }
+
+    }
+
+    public void getPrintdata() {
+        System.out.println("jenis yang anda beli : " + jns);
+        display();
+    }
+
+    public void limit() {
+        System.out.println("==================================================");
+    }
+
+public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        Baju baju = new Baju();
+        System.out.println("Erigo Store");
+        baju.limit();
+        System.out.println("Baju A dengan harga 100000");
+        System.out.println("Baju B dengan harga 125000");
+        System.out.println("Baju C dengan harga 175000");
+        baju.limit();
+        System.out.print("Baju yang akan anda beli bertipe : ");
+        String jns = in.nextLine();
+        baju.setJenis(jns);
+
+        System.out.print("Jumlah Baju yang akan anda beli adalah : ");
+        int jmlh = in.nextInt();
+        baju.setJumlah(jmlh);
+        baju.limit();
+
+        baju.getPrintdata();
+
+    }
+}
