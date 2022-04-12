@@ -1,0 +1,71 @@
+// Nathania Maerella Arunglabi Tambing
+//215150707111040
+//selde
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void Selde(int n){
+        int x; 
+        int s = 0; 
+        int t;
+        int y = n;
+
+        t = y;
+        while(y > 0){
+            x = y % 10;
+            y = y/10;
+            s = (s * 10) + x;
+        }
+        if(t == s){
+            System.out.println(t + " adalah selde.");
+        }else{
+            System.out.println(t + " bukan selde.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int y = input.nextInt();
+
+        Selde(y);
+    
+    }
+}   
+    
+//surat kaisar
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static StringBuffer enk(String tx, int s){
+        StringBuffer hasil = new StringBuffer();
+
+        for (int x = 0; x < tx.length(); x++) {
+            if (Character.isUpperCase(tx.charAt(x)))
+            {
+                int asc = (tx.charAt(x) + s);
+                if(asc > 90) asc -= 26;
+                hasil.append ((char) asc);
+            }
+            else if(Character.isLowerCase(tx.charAt(x)))
+            {
+                int asc = (tx.charAt(x) + s);
+                if(asc > 122) asc -= 26;
+                hasil.append ((char) asc);
+            } else {
+                hasil.append (tx.charAt(x));
+            }
+        }
+        return hasil;
+    }
+    
+    public static void main(String[] args) {
+     Scanner inp = new Scanner(System.in);
+        String tx = inp.nextLine();
+        int n = inp.nextInt() % 26;
+        System.out.println(enk(tx, n));
+    
+    }
+}
