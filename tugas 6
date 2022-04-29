@@ -1,3 +1,4 @@
+//main
 import java.time.LocalDate;
  public class Main {
  public static void main(String[] args) {
@@ -26,3 +27,198 @@ import java.time.LocalDate;
  System.out.println(orang10);
  }
  }
+
+//manager.java
+import java.time.LocalDate;
+ public class Manager extends Pekerja {
+ private String Departemen;
+ public void setDepartemen(String departemen) {
+ this.Departemen = departemen;
+ }
+ public String getDepartemen() {
+ return Departemen;
+ }
+ Manager(String departemen, double gaji, LocalDate thnmasuk, int anak, String name, String nik, boolean jenisKelamin, 
+boolean menikah) {
+ super(gaji, thnmasuk, anak, name, nik, jenisKelamin, menikah);
+ setDepartemen(departemen);
+ }
+ @Override
+ public double getTunjangan() {
+ return super.getTunjangan() + (super.getGaji() * 0.1);
+ }
+ @Override
+ public String toString() {
+ return (super.toString() + "\nDepartemen\t: " + getDepartemen());
+ }
+ }
+ 
+ //pekerja.java
+ import java.util.*;
+import java.time.LocalDate ;
+import java.time.Period ;
+import java.time.format.DateTimeFormatter ;
+ public class Pekerja extends Manusia {
+ private double gaji;
+ private int jumlahAnak;
+ private LocalDate thmasuk;
+ public int getJmlanak() {
+ return jumlahAnak;
+ }
+ public double getGaji() {
+ return gaji;
+ }
+ public double getBonus() {
+ double bonus = getGaji();
+ LocalDate now = LocalDate.now();
+ Period thtengah = Period.between(thmasuk, now);
+ int thn = thtengah.getYears();
+ if (thn > 10) {
+ bonus *= 0.15;
+ } else if (thn > 5) {
+ bonus *= 0.1;
+ } else {
+ bonus *= 0.05;
+ }
+ return bonus;
+ }
+ Pekerja(double gaji, LocalDate tahunmsk, int jmlanakk, String name, String Nik, boolean jumlahKelamin, boolean nikah) 
+{
+ super(name, Nik, jumlahKelamin, nikah);
+ this.gaji = gaji;
+ this.thmasuk = tahunmsk;
+ this.jumlahAnak = jmlanakk;
+ }
+ @Override
+ public double getTunjangan() {
+ double tunjanganAnak = getJmlanak() * 20;
+ return getBonus() + getGaji() + super.getTunjangan() + tunjanganAnak;
+ }
+ @Override
+ public String toString() {
+ DateTimeFormatter formatter
+ = DateTimeFormatter.ofPattern("d M YYYY");
+ return (super.toString() + "\nTahun Masuk\t: " + formatter.format(thmasuk) + "\nJumlah Anak\t: " + getJmlanak() + 
+"\nGaji\t\t: $" + getGaji());
+ }
+ }
+ 
+//manusia.java
+public class Manusia {
+ private String nama,nik;
+ private boolean jenisKelamin, menikah;
+ public String getNama() {
+ return nama;
+ }
+ public void setNama(String nama) {
+ this.nama = nama;
+}
+ public String getNik() {
+ return nik;
+ }
+ public void setNik(String nik) {
+ this.nik = nik;
+ }
+ public boolean getJeniskelamin() {
+ return jenisKelamin;
+ }
+ public void setJeniskelamin(boolean jenisKelamin) {
+ this.jenisKelamin = jenisKelamin;
+ }
+ public String getGender(){ 
+ String gender;
+ if (jenisKelamin == true){ 
+ gender = "Laki-laki";
+ } else {
+ gender = "Perempuan";
+ } 
+ return gender;
+ }
+ public boolean getMenikah() {
+ return menikah;
+ }
+ public void setMenikah(boolean menikah) {
+ this.menikah = menikah;
+ }
+ public double getTunjangan(){ double tunjangan;
+ if (menikah == true){
+ if (jenisKelamin == true){ 
+ tunjangan = 25;
+ } else {
+ tunjangan = 20;
+ }
+ } else {
+ tunjangan = 15;
+ }
+ return tunjangan;
+ }
+ public String toString() {
+ return ("---------------------------------------------------------------" + "\nNama\t\t: " + nama + "\nNIK\t\t: " + nik + "\nJenis Kelamin\t: " + getGender() + "\nPendapatan\t: $" + getTunjangan());
+ }
+ public Manusia(String name, String nik, boolean jenisKelamin, boolean m) {
+ setNama(name);
+ setNik(nik);
+ setJeniskelamin(jenisKelamin);
+ setMenikah(m);
+ }
+}
+
+//mahasiswafilkom.java
+public class MahasiswaFilkom extends Manusia {
+ private String nim;
+ private double ipk;
+ public void setNIM(String nim) {
+ this.nim = nim;
+ }
+ public String getNIM() {
+ return nim;
+ }
+ public void setIPK(double ipk) {
+ this.ipk = ipk;
+ }
+ public double getIPK() {
+ return ipk;
+ }
+ public String getStatus() {
+ String prodi;
+ char index = nim.charAt(6);
+ int angkatan = Integer.parseInt(nim.substring(0, 2));
+ if (index == '2') {
+ prodi = "Teknik Informatika";
+ } else if (index == '3') {
+ prodi = "Teknik Komputer";
+ } else if (index == '4') {
+ prodi = "Sistem Informasi";
+ } else if (index == '6') {
+ prodi = "Pendidikan Teknologi Informasi";
+ } else if (index == '7') {
+ prodi = "Teknologi Informasi";
+ } else {
+ prodi = "Tidak ada data yang sesuai.";
+ }
+ return (prodi + ", 20" + String.format("%2d", angkatan));
+ }
+ public double getbeasiswa() {
+ double bea;
+ if (ipk >= 3 && ipk < 3.5) {
+ bea = 50;
+ } else if (ipk >= 3.5 && ipk <= 4) {
+ bea = 75;
+ } else {
+ bea = 0;
+ } return bea;
+ } @Override
+ public double getTunjangan() {
+ return (super.getTunjangan() + getbeasiswa());
+ }
+ @Override
+ public String toString() {
+ return (super.toString() + "\nNIM\t\t: " + getNIM() + "\nIPK\t\t: " + getIPK() + "\nStatus\t\t: " + getStatus());
+ }
+ MahasiswaFilkom(String nim, double ipk, String name, String nik,boolean jenisKelamin,boolean menikah) {
+ super(name, nik, jenisKelamin, menikah);
+ setNIM(nim);
+ setIPK(ipk);
+ }
+}
+
