@@ -1,0 +1,28 @@
+import java.time.LocalDate;
+ public class Main {
+ public static void main(String[] args) {
+ Manusia orang1 = new Manusia("Indra Arunglabi", "09876547", true, false);
+ System.out.println(orang1);
+ Manusia orang2 = new Manusia("Anthonius Tambing", "45678999", true, true);
+ System.out.println(orang2);
+ Manusia orang3 = new Manusia("Thinezzya Claresta", "098765434", false, true);
+ System.out.println(orang3);
+ 
+ MahasiswaFilkom orang4 = new MahasiswaFilkom("215150707111040", 2.9, "mirel", "12345678", false, false);
+ System.out.println(orang4);
+ MahasiswaFilkom orang5 = new MahasiswaFilkom("215150707111040", 3.1, "mirel", "12345678", false, false);
+ System.out.println(orang5);
+ MahasiswaFilkom orang6 = new MahasiswaFilkom("215150707111040", 3.9, "mirel", "12345678", false, false);
+ System.out.println(orang6);
+ 
+ Pekerja orang7 = new Pekerja(2000, LocalDate.of(2020, 2, 21), 2, "Yanto", "1289999", true, true);
+ System.out.println(orang7);
+ Pekerja orang8 = new Pekerja(1500, LocalDate.of(2013, 3, 12), 0, "Sisi", "98765987", false, true);
+ System.out.println(orang8);
+ Pekerja orang9 = new Pekerja(1000, LocalDate.of(2002, 4, 20), 10, "Lala", "9876587", false, false);
+ System.out.println(orang9);
+ 
+ Manager orang10 = new Manager("Data Analyst", 5000, LocalDate.of(2007, 10, 11), 3, "Kriwil", "2345667", true, true);
+ System.out.println(orang10);
+ }
+ }
